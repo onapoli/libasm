@@ -7,7 +7,7 @@ section .data
 
 section .text
 _start:
-	mov rdi, msg
+	mov rdi, msg	; Set ft_strlen 1st and only argument (*s)
 	call ft_strlen
 	
 	mov rdi, rax	; Assign rax value (return of ft_strlen) to rdi
