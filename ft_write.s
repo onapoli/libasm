@@ -5,4 +5,4 @@ ft_write:
 	mov rax, 1	; set write system service
 	syscall
 
-	ret			; rax recibe el número de caracteres leídos automaticamente, o negativo en caso de error
+	ret		; rax receives by default the number of bytes written, or negative if an error occurred
