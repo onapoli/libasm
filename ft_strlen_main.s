@@ -10,6 +10,6 @@ _start:
 	mov rdi, msg
 	call ft_strlen
 	
-	mov rbx, rax
-	mov rax, 1
-	int 0x80
+	mov rdi, rax	; Assign rax value (return of ft_strlen) to rdi
+	mov rax, 60	; Exit this way to check rdi value with 'echo$?'
+	syscall

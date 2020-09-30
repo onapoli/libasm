@@ -8,11 +8,11 @@ section .data
 
 section .text
 _start:
-	mov rdi, 1			; set ft_write 1st arg (fd)
-	mov rsi, msg		; set ft_write 2nd arg (buffer)
-	mov rdx, cnt		; set ft_write 3rd arg (count)
+	mov rdi, 1	; set ft_write 1st arg (fd)
+	mov rsi, msg	; set ft_write 2nd arg (buffer)
+	mov rdx, cnt	; set ft_write 3rd arg (count)
 	call ft_write
 	
-	mov rbx, rax
-	mov rax, 1
-	int 0x80
+	mov rdi, rax	; assign rax value (return of ft_write) to rdi
+	mov rax, 60	; exit this way to check rdi value with 'echo $?'
+	syscall
