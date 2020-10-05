@@ -6,7 +6,7 @@
 /*   By: onapoli- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:25:44 by onapoli-          #+#    #+#             */
-/*   Updated: 2020/10/03 16:30:11 by onapoli-         ###   ########.fr       */
+/*   Updated: 2020/10/05 11:48:08 by onapoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ extern ssize_t	ft_write(int fd, const void *buf, size_t count);
 extern ssize_t	ft_read(int fd, void *buf, size_t count);
 extern char		*ft_strcpy(char *dest, const char *src);
 extern int		ft_strcmp(const char *s1, const char *s2);
-extern char		*strdup(const char *s);
+extern char		*ft_strdup(const char *s);
 
 int main(void)
 {
@@ -32,6 +32,9 @@ int main(void)
 	size_t	r_buf_count;
 	// ft_strcpy VARIABLES
 	char	*dest;
+	// ft_strdup VARIABLES
+	char	*dup_src;
+	char	*dup_s;
 
 	/*
 	** ft_strlen TESTS
@@ -70,7 +73,7 @@ int main(void)
 	/*
 	** ft_strcpy TESTS
 	*/
-	if (!(dest = malloc(sizeof(char) * 4 + 1)))
+	if (!(dest = malloc(sizeof(char) * (4 + 1))))
 		exit(EXIT_FAILURE);
 	printf("ft_strcpy result: %s\n", ft_strcpy(dest, "Hola"));
 	printf("strcpy result: %s\n", strcpy(dest, "aloH"));
@@ -79,11 +82,38 @@ int main(void)
 	/*
 	** ft_strcmp TESTS
 	*/
-	printf("ft_strcmp result: %s\n", ft_strcmp("Holas", "Hola"));
-	printf("strcmp result: %s\n", strcmp("Holas", "Hola"));
+	printf("ft_strcmp result: %d\n", ft_strcmp("Holas", "Hola"));
+	printf("strcmp result: %d\n", strcmp("Holas", "Hola"));
 
 	/*
 	** ft_strdup TESTS
 	*/
+	// When NULL is set as argument there's a SEGFAULT error in both ft_strlen & strlen
+	if (!(dup_src = malloc(sizeof(char) * (1 + 1))))
+		exit(EXIT_FAILURE);
+	dup_src[0] = 'a';
+	dup_src[1] = 'b';
+	dup_s = ft_strdup(dup_src);
+	printf("ft_strdup string without NULL at the end result: %s\n", dup_s);
+	free(dup_s);
+	free(dup_src);
+
+	dup_s = ft_strdup("Hola");
+	printf("ft_strdup string with NULL at the end result: %s\n", dup_s);
+	free(dup_s);
+
+	if (!(dup_src = malloc(sizeof(char) * (1 + 1))))
+		exit(EXIT_FAILURE);
+	dup_src[0] = 'a';
+	dup_src[1] = 'b';
+	dup_s = strdup(dup_src);
+	printf("strdup string without NULL at the end result: %s\n", dup_s);
+	free(dup_s);
+	free(dup_src);
+
+	dup_s = strdup("Hola");
+	printf("strdup string with NULL at the end result: %s\n", dup_s);
+	free(dup_s);
+	
 	return (0);
 }
