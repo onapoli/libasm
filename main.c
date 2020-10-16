@@ -88,7 +88,7 @@ int main(void)
 	/*
 	** ft_strdup TESTS
 	*/
-	// When NULL is set as argument there's a SEGFAULT error in both ft_strlen & strlen
+	// When NULL is set as argument there's a SEGFAULT error in both ft_strdup & strdup
 	if (!(dup_src = malloc(sizeof(char) * (1 + 1))))
 		exit(EXIT_FAILURE);
 	dup_src[0] = 'a';
